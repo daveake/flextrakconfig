@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, Registry, StdCtrls, ExtCtrls, VaClasses, VaComm, Mask, AdvSpin,
-  IdBaseComponent, IdComponent, IdTCPConnection, IdTCPClient, IdHTTP, SyncObjs;
+  IdBaseComponent, IdComponent, IdTCPConnection, IdTCPClient, IdHTTP, SyncObjs,
+  ComCtrls, CheckLst, StrUtils;
 
 type
   TForm1 = class(TForm)
@@ -15,52 +16,150 @@ type
     VaComm1: TVaComm;
     Label6: TLabel;
     pnlVersion: TPanel;
-    btnSet: TButton;
-    Label14: TLabel;
-    edtFrequency: TEdit;
-    Label15: TLabel;
-    Panel1: TPanel;
     lstCommands: TListBox;
     tmrCommands: TTimer;
-    Label2: TLabel;
-    lstLines: TListBox;
-    IdHTTP1: TIdHTTP;
     Panel3: TPanel;
     tmrScreenUpdates: TTimer;
+    Label17: TLabel;
+    pnlProduct: TPanel;
+    pnlDescription: TPanel;
+    Label18: TLabel;
+    Panel2: TPanel;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    LoRa: TTabSheet;
+    RTTY: TTabSheet;
+    APRS: TTabSheet;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    pnlTime: TPanel;
+    pnlLat: TPanel;
+    pnlLon: TPanel;
+    pnlAlt: TPanel;
+    IdHTTP1: TIdHTTP;
     IdHTTP2: TIdHTTP;
+    TabSheet3: TTabSheet;
+    lstLines: TListBox;
     Label12: TLabel;
     edtCallsign: TEdit;
-    Label3: TLabel;
-    pnlInternal: TPanel;
-    pnlExternal: TPanel;
-    Label4: TLabel;
-    Label5: TLabel;
-    pnlDate: TPanel;
-    Label7: TLabel;
-    pnlTime: TPanel;
-    Label8: TLabel;
-    pnlLat: TPanel;
-    Label9: TLabel;
-    pnlLon: TPanel;
-    Label10: TLabel;
-    pnlAlt: TPanel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label2: TLabel;
+    edtFrequency: TEdit;
+    cmbRxMode: TComboBox;
+    btnSet: TButton;
+    Button1: TButton;
+    Button2: TButton;
+    btnSetAPRS: TButton;
+    Button4: TButton;
+    pnlFlexTrak: TPanel;
+    Label16: TLabel;
+    cmbRxSpreading: TComboBox;
+    Label13: TLabel;
+    cmbRxCoding: TComboBox;
     chkRxImplicit: TCheckBox;
     chkRxLowOpt: TCheckBox;
-    cmbRxCoding: TComboBox;
-    cmbRxSpreading: TComboBox;
     cmbRxBandwidth: TComboBox;
     Label11: TLabel;
-    Label13: TLabel;
-    Label16: TLabel;
-    cmbRxMode: TComboBox;
+    Label3: TLabel;
+    edtFields: TEdit;
+    lstFields: TCheckListBox;
+    TabSheet4: TTabSheet;
+    Label4: TLabel;
+    edtFlightModeAltitude: TEdit;
+    Label19: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
+    edtCutdownAltitude: TEdit;
+    edtCutdownPeriod: TEdit;
+    Label22: TLabel;
+    Label23: TLabel;
+    Button5: TButton;
+    Label24: TLabel;
+    edtCycleCount: TEdit;
+    Label25: TLabel;
+    edtSlot: TEdit;
+    Label26: TLabel;
+    Label27: TLabel;
+    edtRepeat1: TEdit;
+    Label28: TLabel;
+    edtRepeat2: TEdit;
+    Label29: TLabel;
+    edtCallingCount: TEdit;
+    Label30: TLabel;
+    Label31: TLabel;
+    Label32: TLabel;
+    edtRTTYFrequency: TEdit;
+    Label37: TLabel;
+    edtRTTYBaudRate: TEdit;
+    TabSheet6: TTabSheet;
+    chkUplink: TCheckBox;
+    Label33: TLabel;
+    edtUplinkCode: TEdit;
+    Label34: TLabel;
+    edtCDA: TEdit;
+    edtPayloadMass: TEdit;
+    Label35: TLabel;
+    Label36: TLabel;
+    Label43: TLabel;
+    edtLandingAltitude: TEdit;
+    Label44: TLabel;
+    Button6: TButton;
+    Label45: TLabel;
+    edtRTTYAudioShift: TEdit;
+    Label46: TLabel;
+    Label38: TLabel;
+    edtRTTYCount: TEdit;
+    Label39: TLabel;
+    edtRTTYEvery: TEdit;
+    Label40: TLabel;
+    edtRTTYPreamble: TEdit;
+    Label41: TLabel;
+    Label42: TLabel;
+    pnlLatest: TPanel;
+    Label5: TLabel;
+    Label47: TLabel;
+    Label48: TLabel;
+    Label49: TLabel;
+    Label51: TLabel;
+    Label52: TLabel;
+    Label53: TLabel;
+    edtAPRSFrequency: TEdit;
+    edtAPRSCallsign: TEdit;
+    edtAPRSSSID: TEdit;
+    edtPathAltitude: TEdit;
+    edtAPRSInterval: TEdit;
+    edtTelemetry: TEdit;
+    Memo1: TMemo;
+    Memo2: TMemo;
+    Label50: TLabel;
+    chkAPRSWide: TCheckBox;
+    Label54: TLabel;
+    Label55: TLabel;
+    edtAPRSRandom: TEdit;
+    Label56: TLabel;
+    chkPreEmphasis: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1CloseUp(Sender: TObject);
     procedure VaComm1RxChar(Sender: TObject; Count: Integer);
     procedure btnSetClick(Sender: TObject);
     procedure tmrCommandsTimer(Sender: TObject);
     procedure cmbRxModeCloseUp(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure LoRaShow(Sender: TObject);
+    procedure edtFieldsChange(Sender: TObject);
+    procedure lstFieldsClickCheck(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure btnSetAPRSClick(Sender: TObject);
   private
     { Private declarations }
+    FlexTrack: Boolean;
     procedure ProcessLine(Line: AnsiString);
   public
     { Public declarations }
@@ -73,27 +172,41 @@ implementation
 
 {$R *.dfm}
 
+procedure TForm1.btnSetAPRSClick(Sender: TObject);
+begin
+    lstCommands.Items.Clear;
+
+    lstCommands.Items.Add('~AP' + edtAPRSCallsign.Text);
+
+    lstCommands.Items.Add('~AF' + edtAPRSFrequency.Text);
+
+    lstCommands.Items.Add('~AS' + edtAPRSSSID.Text);
+
+    lstCommands.Items.Add('~AA' + edtPathAltitude.Text);
+
+    lstCommands.Items.Add('~AW' + ifthen(chkAPRSWide.Checked, '1', '0'));
+
+    lstCommands.Items.Add('~AI' + edtAPRSInterval.Text);
+
+    lstCommands.Items.Add('~AR' + edtAPRSRandom.Text);
+
+    lstCommands.Items.Add('~AM' + ifthen(chkPreEmphasis.Checked, '1', '0'));
+
+    lstCommands.Items.Add('~ATR' + edtTelemetry.Text);
+
+
+    lstCommands.Items.Add('~CS');
+end;
 
 procedure TForm1.btnSetClick(Sender: TObject);
 begin
     lstCommands.Items.Clear;
+
     lstCommands.Items.Add('~CP' + edtCallsign.Text);
 
-    lstCommands.Items.Add('~LF' + edtFrequency.Text);
+    lstCommands.Items.Add('~CF' + edtFields.Text);
 
-    lstCommands.Items.Add('~LS' + cmbRxSpreading.Text);
-    if chkRxImplicit.Checked then begin
-        lstCommands.Items.Add('~LI1');
-    end else begin
-        lstCommands.Items.Add('~LI0');
-    end;
-    lstCommands.Items.Add('~LE' + cmbRxCoding.Text);
-    lstCommands.Items.Add('~LB' + IntToStr(cmbRxBandwidth.ItemIndex));
-    if chkRxLowOpt.Checked then begin
-        lstCommands.Items.Add('~LL1');
-    end else begin
-        lstCommands.Items.Add('~LL0');
-    end;
+    lstCommands.Items.Add('~GF' + IntToStr(StrToIntDef(edtFlightModeAltitude.Text, 2000)));
 
     lstCommands.Items.Add('~CS');
 end;
@@ -146,14 +259,108 @@ begin
 end;
 
 
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+    if cmbRxMode.ItemIndex >= 0 then begin
+        lstCommands.Items.Clear;
+
+        // Basic LoRa Settings
+        lstCommands.Items.Add('~LF' + edtFrequency.Text);
+
+        if FlexTrack then begin
+            // Just send mode
+            lstCommands.Items.Add('~LM' + IntToStr(cmbRxMode.ItemIndex));
+        end else begin
+            lstCommands.Items.Add('~LS' + cmbRxSpreading.Text);
+            if chkRxImplicit.Checked then begin
+                lstCommands.Items.Add('~LI1');
+            end else begin
+                lstCommands.Items.Add('~LI0');
+            end;
+            lstCommands.Items.Add('~LE' + cmbRxCoding.Text);
+            lstCommands.Items.Add('~LB' + IntToStr(cmbRxBandwidth.ItemIndex));
+            if chkRxLowOpt.Checked then begin
+                lstCommands.Items.Add('~LL1');
+            end else begin
+                lstCommands.Items.Add('~LL0');
+            end;
+        end;
+
+        // TDM
+        lstCommands.Items.Add('~LT' + IntToStr(StrToIntDef(edtCycleCount.Text, 0)));
+        lstCommands.Items.Add('~LO' + IntToStr(StrToIntDef(edtSlot.Text, 0)));
+        lstCommands.Items.Add('~L1' + IntToStr(StrToIntDef(edtRepeat1.Text, -1)));
+        lstCommands.Items.Add('~L2' + IntToStr(StrToIntDef(edtRepeat1.Text, -1)));
+
+        // Calling Mode
+        lstCommands.Items.Add('~LC' + IntToStr(StrToIntDef(edtCallingCount.Text, 0)));
+
+        lstCommands.Items.Add('~CS');
+    end;
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+    lstCommands.Items.Clear;
+
+
+    lstCommands.Items.Add('~RF' + edtRTTYFrequency.Text);
+
+    lstCommands.Items.Add('~RB' + edtRTTYBaudRate.Text);
+
+    lstCommands.Items.Add('~RA' + edtRTTYAudioShift.Text);
+
+    lstCommands.Items.Add('~RC' + edtRTTYCount.Text);
+
+    lstCommands.Items.Add('~RE' + edtRTTYEvery.Text);
+
+    lstCommands.Items.Add('~RP' + edtRTTYPreamble.Text);
+
+    lstCommands.Items.Add('~CS');
+end;
+
+procedure TForm1.Button4Click(Sender: TObject);
+begin
+    if chkUplink.Checked then begin
+        lstCommands.Items.Add('~LE1');
+    end else begin
+        lstCommands.Items.Add('~LE0');
+    end;
+    lstCommands.Items.Add('~LU' + edtUplinkCode.Text);
+
+    lstCommands.Items.Add('~CS');
+end;
+
+procedure TForm1.Button5Click(Sender: TObject);
+begin
+    lstCommands.Items.Clear;
+
+    lstCommands.Items.Add('~CA' + IntToStr(StrToIntDef(edtCutdownAltitude.Text, 0)));
+
+    lstCommands.Items.Add('~CT' + IntToStr(StrToIntDef(edtCutdownPeriod.Text, 5000)));
+
+    lstCommands.Items.Add('~CS');
+end;
+
+procedure TForm1.Button6Click(Sender: TObject);
+begin
+    lstCommands.Items.Add('~PC' + edtCDA.Text);
+
+    lstCommands.Items.Add('~PW' + edtPayloadMass.Text);
+
+    lstCommands.Items.Add('~PL' + edtLandingAltitude.Text);
+
+    lstCommands.Items.Add('~CS');
+end;
+
 procedure TForm1.cmbRxModeCloseUp(Sender: TObject);
 begin
     if cmbRxMode.ItemIndex > 0 then begin
-        cmbRxCoding.ItemIndex := DefaultCoding(cmbRxMode.ItemIndex - 1);
-        cmbRxBandwidth.ItemIndex := DefaultBandwidth(cmbRxMode.ItemIndex - 1);
-        cmbRxSpreading.ItemIndex := DefaultSpreading(cmbRxMode.ItemIndex - 1);
-        chkRxImplicit.Checked := (cmbRxMode.ItemIndex - 1) in [1, 4, 6, 8];
-        chkRxLowOpt.Checked := (cmbRxMode.ItemIndex - 1) = 0;
+        cmbRxCoding.ItemIndex := DefaultCoding(cmbRxMode.ItemIndex);
+        cmbRxBandwidth.ItemIndex := DefaultBandwidth(cmbRxMode.ItemIndex);
+        cmbRxSpreading.ItemIndex := DefaultSpreading(cmbRxMode.ItemIndex);
+        chkRxImplicit.Checked := (cmbRxMode.ItemIndex) in [1, 4, 6, 8];
+        chkRxLowOpt.Checked := (cmbRxMode.ItemIndex) = 0;
     end;
 end;
 
@@ -165,9 +372,32 @@ begin
             VaComm1.DeviceName := ComboBox1.Text;
             VaComm1.Open;
             pnlCommStatus.Caption := VaComm1.DeviceName + ' open';
+            lstCommands.Items.Add('~CC');
+            lstCommands.Items.Add('~CD');
+            lstCommands.Items.Add('~CE');
             lstCommands.Items.Add('~CV');
         except
             pnlCommStatus.Caption := VaComm1.DeviceName + ' failed to open';
+        end;
+    end;
+end;
+
+function FieldCharacter(Index: Integer): String;
+begin
+    if Index <= 9 then begin
+        Result := Chr(Index + Ord('0'));
+    end else begin
+        Result := Chr(Index + Ord('A') - 10);
+    end;
+
+end;
+procedure TForm1.edtFieldsChange(Sender: TObject);
+var
+    i: Integer;
+begin
+    if Self.ActiveControl <> lstFields then begin
+        for i := 0 to lstFields.Items.Count-1 do begin
+            lstFields.Checked[i] := Pos(FieldCharacter(i), edtFields.Text) > 0;
         end;
     end;
 end;
@@ -178,6 +408,8 @@ var
   st: Tstrings;
   i: Integer;
 begin
+    PageControl1.ActivePageIndex := 0;
+
     ComboBox1.Items.Clear;
 
     reg := TRegistry.Create;
@@ -197,6 +429,31 @@ begin
     finally
         reg.Free;
     end;
+end;
+
+procedure TForm1.LoRaShow(Sender: TObject);
+begin
+    cmbRxSpreading.Enabled := not FlexTrack;
+    cmbRxCoding.Enabled := not FlexTrack;
+    cmbRxBandwidth.Enabled := not FlexTrack;
+    chkRxImplicit.Enabled := not FlexTrack;
+    chkRxLowOpt.Enabled := not FlexTrack;
+end;
+
+procedure TForm1.lstFieldsClickCheck(Sender: TObject);
+var
+    i: Integer;
+    Temp: String;
+begin
+    Temp := '';
+
+    for i := 0 to lstFields.Items.Count-1 do begin
+        if lstFields.Checked[i] then begin
+            Temp := Temp + FieldCharacter(i);
+        end;
+    end;
+
+    edtFields.Text := Temp;
 end;
 
 function GetString(var Line: AnsiString; Delimiter: String=','): AnsiString;
@@ -221,51 +478,79 @@ begin
 
     if Command = 'VER' then begin
         pnlVersion.Caption := Line;
-    end else if Command = 'TEMP0' then begin
-        pnlInternal.Caption := Line;
-    end else if Command = 'TEMP0' then begin
-        pnlExternal.Caption := Line;
+        if pnlProduct.Caption = '' then pnlProduct.Caption := 'FlexTrak';
+        if pnlDescription.Caption = '' then pnlDescription.Caption := 'FlexTrak AVR';
+    end else if Command = 'PROD' then begin
+        pnlProduct.Caption := Line;
+        FlexTrack := Pos('FlexTrack', Line) > 0;
+        RTTY.TabVisible := FlexTrack;
+        APRS.TabVisible := not FlexTrack;
+    end else if Command = 'DESC' then begin
+        pnlDescription.Caption := Line;
     end else if Command = 'GPS' then begin
-        pnlDate.Caption := GetString(Line);
+        GetString(Line);
         pnlTime.Caption := GetString(Line);
         pnlLat.Caption := GetString(Line);
         pnlLon.Caption := GetString(Line);
         pnlAlt.Caption := GetString(Line);
-    end else if Command = 'LORA' then begin
-        lstLines.ItemIndex := lstLines.Items.Add(Line);
+    end else if (Command = 'LORA') or
+                (Command = 'RTTY') or
+                (Command = 'APRS') then begin
+        lstLines.ItemIndex := lstLines.Items.Add(Command + ': ' + Line);
+        pnlLatest.Caption := Line;
+        GetString(Line);
+        GetString(Line);
+        pnlTime.Caption := GetString(Line);
+        pnlLat.Caption := GetString(Line);
+        pnlLon.Caption := GetString(Line);
+        pnlAlt.Caption := GetString(Line);
+    end else if Command = 'CP' then begin
+        edtCallsign.Text := Line;
+    end else if Command = 'CF' then begin
+        edtFields.Text := Line;
+    end else if Command = 'GF' then begin
+        edtFlightModeAltitude.Text := Line;
+    end else if Command = 'CA' then begin
+        edtCutdownAltitude.Text := Line;
+    end else if Command = 'CT' then begin
+        edtCutdownPeriod.Text := Line;
+    end else if Command = 'LF' then begin
+        edtFrequency.Text := Line;
+    end else if Command = 'LM' then begin
+        cmbRxMode.ItemIndex := StrToIntDef(Line, -1);
+    end else if Command = 'LT' then begin
+        edtCycleCount.Text := Line;
+    end else if Command = 'LO' then begin
+        edtSlot.Text := Line;
+    end else if Command = 'L1' then begin
+        edtRepeat1.Text := Line;
+    end else if Command = 'L2' then begin
+        edtRepeat2.Text := Line;
+    end else if Command = 'LC' then begin
+        edtCallingCount.Text := Line;
+    end else if Command = 'LE' then begin
+        chkUplink.Checked := StrToIntDef(Line,0) <> 0;
+    end else if Command = 'LU' then begin
+        edtUplinkCode.Text := Line;
+    end else if Command = 'PC' then begin
+        edtCDA.Text := Line;
+    end else if Command = 'PW' then begin
+        edtPayloadMass.Text := Line;
+    end else if Command = 'PL' then begin
+        edtLandingAltitude.Text := Line;
+    end else if Command = 'RF' then begin
+        edtRTTYFrequency.Text := Line;
+    end else if Command = 'RB' then begin
+        edtRTTYBaudRate.Text := Line;
+    end else if Command = 'RA' then begin
+        edtRTTYAudioShift.Text := Line;
+    end else if Command = 'RC' then begin
+        edtRTTYCount.Text := Line;
+    end else if Command = 'RE' then begin
+        edtRTTYEvery.Text := Line;
+    end else if Command = 'RP' then begin
+        edtRTTYPreamble.Text := Line;
     end;
-
-
-
-//
-//    if Command = 'Firmware V' then begin
-//        pnlRSSI.Caption := string(Line + 'dBm');
-//        if pnlAverageRSSI.Caption = '' then begin
-//            pnlAverageRSSI.Caption := string(Line + 'dBm');
-//        end else begin
-//            pnlAverageRSSI.Caption := IntToStr(Round(StrToFloat(Copy(pnlAverageRSSI.Caption, 1, Length(pnlAverageRSSI.Caption)-3)) * 0.8 + StrToFloat(Line) * 0.2)) + 'dBm';
-//        end;
-//    end else if Command = 'MESSAGE' then begin
-//        lstPackets.Items.Add(Line);
-//        lstPackets.ItemIndex := lstPackets.Items.Count-1;
-//        pblSentenceCount.Caption := IntToStr(StrToIntdef(pblSentenceCount.Caption, 0) + 1);
-//    end else if Command = 'HEX' then begin
-//        if (Copy(Line,1,2) = '66') or (Copy(Line,1,2) = 'E6') then begin
-//            lstPackets.Items.Add(Line);
-//            lstPackets.ItemIndex := lstPackets.Items.Count-1;
-//            if Copy(Line,1,2) = 'E6' then begin
-//                Line[1] := '6';
-//            end;
-//        end;
-//    end else if Command = 'FREQERR' then begin
-//        pnlFrequencyError.Caption := Line + ' kHz';
-//    end else if Command = 'PACKETRSSI' then begin
-//        pnlPacketRSSI.Caption := Line;
-//    end else if Command = 'PACKETSNR' then begin
-//        pnlPacketSNR.Caption := Line;
-//    end else begin
-//        // lstPackets.Items.Add('Unknown: ' + Line);
-//    end;
 end;
 
 procedure TForm1.tmrCommandsTimer(Sender: TObject);

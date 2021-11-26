@@ -1,19 +1,23 @@
-This is a Windows config tool for the FlexTrak balloon tracker board.  It configures the tracker using a serial link e.g. FTDI-TTL cable.  The tracker can be powered from the cable if it supplies 5V with enough current, otherwise use batteries.
+This is a Windows config tool for the FlexTrak balloon tracker board, and other tracker software that uses the same serial protocol.  It configures the tracker using a serial link e.g. FTDI-TTL cable.  The tracker can be powered from the cable if it supplies 5V with enough current, otherwise use batteries.
 
-It provides simple controls to set the LoRa parameters (frequency, bandwidth etc.).  APRS will be added soon.
+It provides simple controls to set the LoRa parameters (frequency, bandwidth etc.).
+
+
 
 Capabilities
 ------------
 
 - Allows the payload ID, LoRa frequency, bandwidth etc. to be set
-- Displays temperature, GPS etc from the tracker
 - Displays packets being sent over LoRa
+- Works with FlexTrak (Pi Zero board)
+- Works with FlexTrack (standalone trackers)
 
 Caveats and Limitations
 -----------------------
 
-- No APRS yet.
 - It's a Windows-only program
+- Not all of my tracker programs support this protocol yet
+- Depending on the tracker, some settings do not automatically populate from the tracker
 
 Connections
 -----
@@ -36,6 +40,23 @@ The program was developed using Delphi 2009 with the TMS Async component for ser
 
 History
 -------
+
+<u>26/11/2021	V2.0</u>
+
+- Support for standalone trackers
+= Tabbed interface
+- Fields populated from tracker
+- Checks for attached device type
+- Hides tabs according to tracker type
+- RTTY section
+- TDM settings for LoRa
+- Intelligent setting of which fields tracker sends in telemetry
+- Cutdown settings
+- Calling mode setting
+- Prediction settings
+- Resizeable window
+- Extra box at bottom for latest telemetry
+- APRS added
 
 <u>25/8/2020	V1.0</u>
 
