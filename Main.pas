@@ -80,14 +80,14 @@ type
     Button5: TButton;
     Label24: TLabel;
     edtCycleCount: TEdit;
-    Label25: TLabel;
+    lblCallingCount2: TLabel;
     edtSlot: TEdit;
     Label26: TLabel;
-    Label27: TLabel;
+    lblRepeat1: TLabel;
     edtRepeat1: TEdit;
-    Label28: TLabel;
+    lblRepeat2: TLabel;
     edtRepeat2: TEdit;
-    Label29: TLabel;
+    lblCallingCount1: TLabel;
     edtCallingCount: TEdit;
     Label30: TLabel;
     Label31: TLabel;
@@ -134,7 +134,6 @@ type
     edtAPRSInterval: TEdit;
     edtTelemetry: TEdit;
     Memo1: TMemo;
-    Memo2: TMemo;
     Label50: TLabel;
     chkAPRSWide: TCheckBox;
     Label54: TLabel;
@@ -142,6 +141,15 @@ type
     edtAPRSRandom: TEdit;
     Label56: TLabel;
     chkPreEmphasis: TCheckBox;
+    Label25: TLabel;
+    pnlBattery: TPanel;
+    Label27: TLabel;
+    Label28: TLabel;
+    pnlInternal: TPanel;
+    Label29: TLabel;
+    Label57: TLabel;
+    pnlExternal: TPanel;
+    Label58: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1CloseUp(Sender: TObject);
     procedure VaComm1RxChar(Sender: TObject; Count: Integer);
@@ -289,11 +297,17 @@ begin
         // TDM
         lstCommands.Items.Add('~LT' + IntToStr(StrToIntDef(edtCycleCount.Text, 0)));
         lstCommands.Items.Add('~LO' + IntToStr(StrToIntDef(edtSlot.Text, 0)));
-        lstCommands.Items.Add('~L1' + IntToStr(StrToIntDef(edtRepeat1.Text, -1)));
-        lstCommands.Items.Add('~L2' + IntToStr(StrToIntDef(edtRepeat1.Text, -1)));
+
+        // TDM Repeating
+        if FlexTrack then begin
+            lstCommands.Items.Add('~L1' + IntToStr(StrToIntDef(edtRepeat1.Text, -1)));
+            lstCommands.Items.Add('~L2' + IntToStr(StrToIntDef(edtRepeat1.Text, -1)));
+        end;
 
         // Calling Mode
-        lstCommands.Items.Add('~LC' + IntToStr(StrToIntDef(edtCallingCount.Text, 0)));
+        if FlexTrack then begin
+            lstCommands.Items.Add('~LC' + IntToStr(StrToIntDef(edtCallingCount.Text, 0)));
+        end;
 
         lstCommands.Items.Add('~CS');
     end;
@@ -485,6 +499,13 @@ begin
         FlexTrack := Pos('FlexTrack', Line) > 0;
         RTTY.TabVisible := FlexTrack;
         APRS.TabVisible := not FlexTrack;
+        lblRepeat1.Visible := FlexTrack;
+        lblRepeat2.Visible := FlexTrack;
+        edtRepeat1.Visible := FlexTrack;
+        edtRepeat2.Visible := FlexTrack;
+        edtCallingCount.Visible := FlexTrack;
+        lblCallingCount1.Visible := FlexTrack;
+        lblCallingCount2.Visible := FlexTrack;
     end else if Command = 'DESC' then begin
         pnlDescription.Caption := Line;
     end else if Command = 'GPS' then begin
@@ -504,6 +525,16 @@ begin
         pnlLat.Caption := GetString(Line);
         pnlLon.Caption := GetString(Line);
         pnlAlt.Caption := GetString(Line);
+    end else if Command = 'BATT' then begin
+        try
+            pnlBattery.Caption := FormatFloat('0.0', StrToFloat(GetString(Line)) / 1000);
+        finally
+
+        end;
+    end else if Command = 'INT' then begin
+        pnlInternal.Caption := GetString(Line);
+    end else if Command = 'EXT' then begin
+        pnlExternal.Caption := GetString(Line);
     end else if Command = 'CP' then begin
         edtCallsign.Text := Line;
     end else if Command = 'CF' then begin
@@ -550,6 +581,24 @@ begin
         edtRTTYEvery.Text := Line;
     end else if Command = 'RP' then begin
         edtRTTYPreamble.Text := Line;
+    end else if Command = 'AF' then begin
+        edtAPRSFrequency.Text := Line;
+    end else if Command = 'AP' then begin
+        edtAPRSCallsign.Text := Line;
+    end else if Command = 'AS' then begin
+        edtAPRSSSID.Text := Line;
+    end else if Command = 'AA' then begin
+        edtPathAltitude.Text := Line;
+    end else if Command = 'AW' then begin
+        chkAPRSWide.Checked := StrToIntDef(Line,0) <> 0;
+    end else if Command = 'AI' then begin
+        edtAPRSInterval.Text := Line;
+    end else if Command = 'AR' then begin
+        edtAPRSRandom.Text := Line;
+    end else if Command = 'AM' then begin
+        chkPreEmphasis.Checked := StrToIntDef(Line,0) <> 0;
+    end else if Command = 'AT' then begin
+        edtTelemetry.Text := Line;
     end;
 end;
 

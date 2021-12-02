@@ -4,7 +4,7 @@ object Form1: TForm1
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Flextrak Configuration Tool V2.0'
   ClientHeight = 672
-  ClientWidth = 610
+  ClientWidth = 1106
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,7 +14,7 @@ object Form1: TForm1
   OldCreateOrder = False
   OnCreate = FormCreate
   DesignSize = (
-    610
+    1106
     672)
   PixelsPerInch = 96
   TextHeight = 19
@@ -27,13 +27,14 @@ object Form1: TForm1
     Caption = 'Serial Port:'
   end
   object Label6: TLabel
-    Left = 500
+    Left = 996
     Top = 84
     Width = 30
     Height = 19
     Alignment = taRightJustify
     Anchors = [akTop, akRight]
     Caption = 'Ver:'
+    ExplicitLeft = 500
   end
   object Label17: TLabel
     Left = 43
@@ -74,30 +75,33 @@ object Form1: TForm1
   object pnlCommStatus: TPanel
     Left = 332
     Top = 20
-    Width = 265
+    Width = 761
     Height = 27
     Anchors = [akLeft, akTop, akRight]
     BevelOuter = bvLowered
     Caption = 'Please choose serial port'
     TabOrder = 1
+    ExplicitWidth = 265
   end
   object pnlVersion: TPanel
-    Left = 536
+    Left = 1032
     Top = 80
     Width = 60
     Height = 27
     Anchors = [akTop, akRight]
     BevelOuter = bvLowered
     TabOrder = 2
+    ExplicitLeft = 536
   end
   object Panel3: TPanel
     Left = 13
     Top = 61
-    Width = 585
+    Width = 1081
     Height = 5
     Anchors = [akLeft, akTop, akRight]
     BevelOuter = bvLowered
     TabOrder = 4
+    ExplicitWidth = 585
   end
   object pnlProduct: TPanel
     Left = 109
@@ -110,31 +114,35 @@ object Form1: TForm1
   object pnlDescription: TPanel
     Left = 266
     Top = 80
-    Width = 203
+    Width = 699
     Height = 27
     Anchors = [akLeft, akTop, akRight]
     BevelOuter = bvLowered
     TabOrder = 6
+    ExplicitWidth = 203
   end
   object Panel2: TPanel
     Left = 13
     Top = 118
-    Width = 585
+    Width = 1081
     Height = 5
     Anchors = [akLeft, akTop, akRight]
     BevelOuter = bvLowered
     TabOrder = 7
+    ExplicitWidth = 585
   end
   object PageControl1: TPageControl
     Left = 13
     Top = 136
-    Width = 585
+    Width = 1081
     Height = 489
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 8
+    ExplicitWidth = 585
     object TabSheet1: TTabSheet
       Caption = 'Status'
+      ExplicitWidth = 577
       object Label7: TLabel
         Left = 8
         Top = 16
@@ -166,6 +174,51 @@ object Form1: TForm1
         Height = 19
         Alignment = taRightJustify
         Caption = 'Alt:'
+      end
+      object Label25: TLabel
+        Left = 599
+        Top = 16
+        Width = 33
+        Height = 19
+        Alignment = taRightJustify
+        Caption = 'Batt:'
+      end
+      object Label27: TLabel
+        Left = 111
+        Top = 52
+        Width = 10
+        Height = 19
+        Caption = 'V'
+      end
+      object Label28: TLabel
+        Left = 740
+        Top = 16
+        Width = 26
+        Height = 19
+        Alignment = taRightJustify
+        Caption = 'Int:'
+      end
+      object Label29: TLabel
+        Left = 829
+        Top = 16
+        Width = 10
+        Height = 19
+        Caption = 'C'
+      end
+      object Label57: TLabel
+        Left = 997
+        Top = 16
+        Width = 10
+        Height = 19
+        Caption = 'C'
+      end
+      object Label58: TLabel
+        Left = 906
+        Top = 16
+        Width = 28
+        Height = 19
+        Alignment = taRightJustify
+        Caption = 'Ext:'
       end
       object pnlTime: TPanel
         Left = 56
@@ -203,7 +256,7 @@ object Form1: TForm1
         AlignWithMargins = True
         Left = 3
         Top = 52
-        Width = 571
+        Width = 1067
         Height = 400
         Align = alBottom
         Anchors = [akLeft, akTop, akRight, akBottom]
@@ -216,10 +269,38 @@ object Form1: TForm1
         ParentFont = False
         TabOrder = 4
       end
+      object pnlBattery: TPanel
+        Left = 638
+        Top = 12
+        Width = 47
+        Height = 27
+        BevelOuter = bvLowered
+        TabOrder = 5
+      end
+      object pnlInternal: TPanel
+        Left = 772
+        Top = 12
+        Width = 47
+        Height = 27
+        BevelOuter = bvLowered
+        TabOrder = 6
+      end
+      object pnlExternal: TPanel
+        Left = 940
+        Top = 12
+        Width = 47
+        Height = 27
+        BevelOuter = bvLowered
+        TabOrder = 7
+      end
     end
     object TabSheet2: TTabSheet
       Caption = 'Common'
       ImageIndex = 1
+      ExplicitWidth = 577
+      DesignSize = (
+        1073
+        455)
       object Label12: TLabel
         Left = 62
         Top = 25
@@ -254,15 +335,16 @@ object Form1: TForm1
       object edtCallsign: TEdit
         Left = 129
         Top = 23
-        Width = 85
+        Width = 128
         Height = 27
         TabOrder = 0
       end
       object btnSet: TButton
-        Left = 436
-        Top = 375
+        Left = 936
+        Top = 379
         Width = 121
         Height = 64
+        Anchors = [akRight, akBottom]
         Caption = 'Set'
         TabOrder = 1
         OnClick = btnSetClick
@@ -276,10 +358,10 @@ object Form1: TForm1
         OnChange = edtFieldsChange
       end
       object lstFields: TCheckListBox
-        Left = 331
-        Top = 22
-        Width = 226
-        Height = 335
+        Left = 443
+        Top = 14
+        Width = 290
+        Height = 431
         OnClickCheck = lstFieldsClickCheck
         ItemHeight = 19
         Items.Strings = (
@@ -321,6 +403,10 @@ object Form1: TForm1
       Caption = 'LoRa'
       ImageIndex = 2
       OnShow = LoRaShow
+      ExplicitWidth = 577
+      DesignSize = (
+        1073
+        455)
       object Label14: TLabel
         Left = 32
         Top = 25
@@ -352,7 +438,7 @@ object Form1: TForm1
         Alignment = taRightJustify
         Caption = 'TDM Cycle:'
       end
-      object Label25: TLabel
+      object lblCallingCount2: TLabel
         Left = 178
         Top = 273
         Width = 381
@@ -367,7 +453,7 @@ object Form1: TForm1
         Alignment = taRightJustify
         Caption = 'Slot:'
       end
-      object Label27: TLabel
+      object lblRepeat1: TLabel
         Left = 349
         Top = 229
         Width = 44
@@ -375,7 +461,7 @@ object Form1: TForm1
         Alignment = taRightJustify
         Caption = 'Rpt 1:'
       end
-      object Label28: TLabel
+      object lblRepeat2: TLabel
         Left = 460
         Top = 229
         Width = 44
@@ -383,7 +469,7 @@ object Form1: TForm1
         Alignment = taRightJustify
         Caption = 'Rpt 2:'
       end
-      object Label29: TLabel
+      object lblCallingCount1: TLabel
         Left = 9
         Top = 273
         Width = 101
@@ -428,10 +514,11 @@ object Form1: TForm1
           '8 - SSDV Repeater')
       end
       object Button1: TButton
-        Left = 436
-        Top = 375
+        Left = 932
+        Top = 379
         Width = 121
         Height = 64
+        Anchors = [akRight, akBottom]
         Caption = 'Set'
         TabOrder = 2
         OnClick = Button1Click
@@ -571,6 +658,10 @@ object Form1: TForm1
     object RTTY: TTabSheet
       Caption = 'RTTY'
       ImageIndex = 3
+      ExplicitWidth = 577
+      DesignSize = (
+        1073
+        455)
       object Label31: TLabel
         Left = 129
         Top = 57
@@ -648,10 +739,11 @@ object Form1: TForm1
         Caption = 'RTTY is sent after these LoRa packets'
       end
       object Button2: TButton
-        Left = 436
-        Top = 375
+        Left = 924
+        Top = 379
         Width = 121
         Height = 64
+        Anchors = [akRight, akBottom]
         Caption = 'Set'
         TabOrder = 0
         OnClick = Button2Click
@@ -703,6 +795,10 @@ object Form1: TForm1
     object APRS: TTabSheet
       Caption = 'APRS'
       ImageIndex = 4
+      ExplicitWidth = 577
+      DesignSize = (
+        1073
+        455)
       object Label5: TLabel
         Left = 34
         Top = 21
@@ -788,10 +884,11 @@ object Form1: TForm1
         Caption = 's'
       end
       object btnSetAPRS: TButton
-        Left = 436
-        Top = 375
+        Left = 932
+        Top = 379
         Width = 121
         Height = 64
+        Anchors = [akRight, akBottom]
         Caption = 'Set'
         TabOrder = 0
         OnClick = btnSetAPRSClick
@@ -847,9 +944,9 @@ object Form1: TForm1
       object Memo1: TMemo
         Left = 272
         Top = 30
-        Width = 285
+        Width = 781
         Height = 335
-        Enabled = False
+        Anchors = [akLeft, akTop, akRight]
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -16
@@ -860,40 +957,26 @@ object Form1: TForm1
           ''
           '** Please confirm online **'
           ''
-          '144.390 MHz '#8212' North '
-          'America, '
-          'Colombia, Chile, Indonesia, '
-          'Malaysia, '
-          'Thailand'
+          
+            '144.390 MHz '#8212' North America, Colombia, Chile, Indonesia, Malaysi' +
+            'a, Thailand'
           '144.575 MHz '#8212' New Zealand'
           '144.640 MHz '#8212' Taiwan'
           '144.660 MHz '#8212' Japan'
-          '144.800 MHz '#8212' South Africa, '
-          'Europe, Russia'
-          '144.930 MHz '#8212' Argentina, '
-          'Uruguay'
+          '144.800 MHz '#8212' South Africa, Europe, Russia'
+          '144.930 MHz '#8212' Argentina, Uruguay'
           '145.175 MHz '#8212' Australia'
-          '145.570 MHz '#8212' Brazil')
+          '145.570 MHz '#8212' Brazil'
+          ''
+          'IMPORTANT - Use of APRS REQUIRES a suitable ham radio licence.'
+          ''
+          
+            'IMPORTANT - Some countries e.g. UK do not allow APRS frequencies' +
+            ' to be used '
+          'from an airborne device e.g. balloon.')
         ParentFont = False
+        ReadOnly = True
         TabOrder = 7
-      end
-      object Memo2: TMemo
-        Left = 7
-        Top = 376
-        Width = 423
-        Height = 63
-        Enabled = False
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -16
-        Font.Name = 'Courier New'
-        Font.Style = []
-        Lines.Strings = (
-          'IMPORTANT Some countries e.g. UK do not '
-          'allow APRS frequencies to be used from an '
-          'airborne device e.g. balloon.')
-        ParentFont = False
-        TabOrder = 8
       end
       object chkAPRSWide: TCheckBox
         Left = 125
@@ -901,14 +984,14 @@ object Form1: TForm1
         Width = 97
         Height = 17
         Caption = 'Use Wide'
-        TabOrder = 9
+        TabOrder = 8
       end
       object edtAPRSRandom: TEdit
         Left = 125
         Top = 263
         Width = 49
         Height = 27
-        TabOrder = 10
+        TabOrder = 9
         Text = '15'
       end
       object chkPreEmphasis: TCheckBox
@@ -917,12 +1000,16 @@ object Form1: TForm1
         Width = 121
         Height = 17
         Caption = 'Pre-emphasis'
-        TabOrder = 11
+        TabOrder = 10
       end
     end
     object TabSheet3: TTabSheet
       Caption = 'Uplink'
       ImageIndex = 5
+      ExplicitWidth = 577
+      DesignSize = (
+        1073
+        455)
       object Label33: TLabel
         Left = 50
         Top = 80
@@ -932,10 +1019,11 @@ object Form1: TForm1
         Caption = 'Encryption Code:'
       end
       object Button4: TButton
-        Left = 436
-        Top = 375
+        Left = 932
+        Top = 379
         Width = 121
         Height = 64
+        Anchors = [akRight, akBottom]
         Caption = 'Set'
         TabOrder = 0
         OnClick = Button4Click
@@ -960,6 +1048,10 @@ object Form1: TForm1
     object TabSheet4: TTabSheet
       Caption = 'Cutdown'
       ImageIndex = 6
+      ExplicitWidth = 577
+      DesignSize = (
+        1073
+        455)
       object Label20: TLabel
         Left = 62
         Top = 78
@@ -1005,10 +1097,11 @@ object Form1: TForm1
         TabOrder = 1
       end
       object Button5: TButton
-        Left = 436
+        Left = 924
         Top = 375
         Width = 121
         Height = 64
+        Anchors = [akRight, akBottom]
         Caption = 'Set'
         TabOrder = 2
         OnClick = Button5Click
@@ -1017,6 +1110,10 @@ object Form1: TForm1
     object TabSheet6: TTabSheet
       Caption = 'Prediction'
       ImageIndex = 7
+      ExplicitWidth = 577
+      DesignSize = (
+        1073
+        455)
       object Label34: TLabel
         Left = 135
         Top = 72
@@ -1080,10 +1177,11 @@ object Form1: TForm1
         TabOrder = 2
       end
       object Button6: TButton
-        Left = 436
-        Top = 375
+        Left = 920
+        Top = 379
         Width = 121
         Height = 64
+        Anchors = [akRight, akBottom]
         Caption = 'Set'
         TabOrder = 3
         OnClick = Button6Click
@@ -1093,11 +1191,12 @@ object Form1: TForm1
   object pnlLatest: TPanel
     Left = 17
     Top = 631
-    Width = 574
+    Width = 1070
     Height = 27
     Anchors = [akLeft, akTop, akRight, akBottom]
     BevelOuter = bvLowered
     TabOrder = 9
+    ExplicitWidth = 574
   end
   object VaComm1: TVaComm
     Baudrate = br38400
