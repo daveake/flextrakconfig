@@ -150,6 +150,10 @@ type
     Label57: TLabel;
     pnlExternal: TPanel;
     Label58: TLabel;
+    cmbGPSMode: TComboBox;
+    Label59: TLabel;
+    Panel1: TPanel;
+    Label60: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1CloseUp(Sender: TObject);
     procedure VaComm1RxChar(Sender: TObject; Count: Integer);
@@ -215,6 +219,14 @@ begin
     lstCommands.Items.Add('~CF' + edtFields.Text);
 
     lstCommands.Items.Add('~GF' + IntToStr(StrToIntDef(edtFlightModeAltitude.Text, 2000)));
+
+    if cmbGPSMode.ItemIndex = 0 then begin
+        lstCommands.Items.Add('~GM-1');
+    end else if cmbGPSMode.ItemIndex = 1 then begin
+        lstCommands.Items.Add('~GM0');
+    end else if cmbGPSMode.ItemIndex > 1 then begin
+        lstCommands.Items.Add('~GM' + IntToStr(cmbGPSMode.ItemIndex));
+    end;
 
     lstCommands.Items.Add('~CS');
 end;
@@ -336,9 +348,9 @@ end;
 procedure TForm1.Button4Click(Sender: TObject);
 begin
     if chkUplink.Checked then begin
-        lstCommands.Items.Add('~LE1');
+        lstCommands.Items.Add('~LK1');
     end else begin
-        lstCommands.Items.Add('~LE0');
+        lstCommands.Items.Add('~LK0');
     end;
     lstCommands.Items.Add('~LU' + edtUplinkCode.Text);
 
@@ -487,6 +499,7 @@ end;
 procedure TForm1.ProcessLine(Line: AnsiString);
 var
     Command: AnsiString;
+    Value: Integer;
 begin
     Command := UpperCase(GetString(Line, '='));
 
@@ -541,6 +554,17 @@ begin
         edtFields.Text := Line;
     end else if Command = 'GF' then begin
         edtFlightModeAltitude.Text := Line;
+    end else if Command = 'GM' then begin
+        Value := StrToIntDef(Line, -1);
+        if Value = -1 then begin
+            cmbGPSMode.ItemIndex := 0;
+        end else if Value = 0 then begin
+            cmbGPSMode.ItemIndex := 1;
+        end else if Value > 1 then begin
+            cmbGPSMode.ItemIndex := Value
+        end;
+    end else if Command = 'GM' then begin
+        edtFlightModeAltitude.Text := Line;
     end else if Command = 'CA' then begin
         edtCutdownAltitude.Text := Line;
     end else if Command = 'CT' then begin
@@ -559,7 +583,7 @@ begin
         edtRepeat2.Text := Line;
     end else if Command = 'LC' then begin
         edtCallingCount.Text := Line;
-    end else if Command = 'LE' then begin
+    end else if Command = 'LK' then begin
         chkUplink.Checked := StrToIntDef(Line,0) <> 0;
     end else if Command = 'LU' then begin
         edtUplinkCode.Text := Line;

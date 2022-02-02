@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
-  Caption = 'Flextrak Configuration Tool V2.0'
+  Caption = 'Flextrak Configuration Tool V2.2'
   ClientHeight = 672
   ClientWidth = 1106
   Color = clBtnFace
@@ -81,7 +81,6 @@ object Form1: TForm1
     BevelOuter = bvLowered
     Caption = 'Please choose serial port'
     TabOrder = 1
-    ExplicitWidth = 265
   end
   object pnlVersion: TPanel
     Left = 1032
@@ -91,7 +90,6 @@ object Form1: TForm1
     Anchors = [akTop, akRight]
     BevelOuter = bvLowered
     TabOrder = 2
-    ExplicitLeft = 536
   end
   object Panel3: TPanel
     Left = 13
@@ -101,7 +99,6 @@ object Form1: TForm1
     Anchors = [akLeft, akTop, akRight]
     BevelOuter = bvLowered
     TabOrder = 4
-    ExplicitWidth = 585
   end
   object pnlProduct: TPanel
     Left = 109
@@ -119,7 +116,6 @@ object Form1: TForm1
     Anchors = [akLeft, akTop, akRight]
     BevelOuter = bvLowered
     TabOrder = 6
-    ExplicitWidth = 203
   end
   object Panel2: TPanel
     Left = 13
@@ -129,20 +125,17 @@ object Form1: TForm1
     Anchors = [akLeft, akTop, akRight]
     BevelOuter = bvLowered
     TabOrder = 7
-    ExplicitWidth = 585
   end
   object PageControl1: TPageControl
     Left = 13
     Top = 136
     Width = 1081
     Height = 489
-    ActivePage = TabSheet1
+    ActivePage = TabSheet3
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 8
-    ExplicitWidth = 585
     object TabSheet1: TTabSheet
       Caption = 'Status'
-      ExplicitWidth = 577
       object Label7: TLabel
         Left = 8
         Top = 16
@@ -297,7 +290,6 @@ object Form1: TForm1
     object TabSheet2: TTabSheet
       Caption = 'Common'
       ImageIndex = 1
-      ExplicitWidth = 577
       DesignSize = (
         1073
         455)
@@ -319,7 +311,7 @@ object Form1: TForm1
       end
       object Label4: TLabel
         Left = 10
-        Top = 109
+        Top = 153
         Width = 113
         Height = 19
         Alignment = taRightJustify
@@ -327,10 +319,18 @@ object Form1: TForm1
       end
       object Label19: TLabel
         Left = 225
-        Top = 109
+        Top = 153
         Width = 48
         Height = 19
         Caption = 'metres'
+      end
+      object Label59: TLabel
+        Left = 38
+        Top = 110
+        Width = 78
+        Height = 19
+        Alignment = taRightJustify
+        Caption = 'GPS Mode:'
       end
       object edtCallsign: TEdit
         Left = 129
@@ -358,10 +358,10 @@ object Form1: TForm1
         OnChange = edtFieldsChange
       end
       object lstFields: TCheckListBox
-        Left = 443
-        Top = 14
+        Left = 395
+        Top = 10
         Width = 290
-        Height = 431
+        Height = 442
         OnClickCheck = lstFieldsClickCheck
         ItemHeight = 19
         Items.Strings = (
@@ -388,22 +388,66 @@ object Form1: TForm1
           'IK User Defined'
           'L: User Defined'
           'M: User Defined'
-          'N: User Defined')
+          'N: User Defined'
+          'O: Maximum Altitude')
         TabOrder = 3
       end
       object edtFlightModeAltitude: TEdit
         Left = 129
-        Top = 106
+        Top = 150
         Width = 85
         Height = 27
         TabOrder = 4
+      end
+      object cmbGPSMode: TComboBox
+        Left = 129
+        Top = 107
+        Width = 196
+        Height = 27
+        DropDownCount = 10
+        ItemHeight = 19
+        TabOrder = 5
+        Text = 'Choose Mode ...'
+        OnCloseUp = cmbRxModeCloseUp
+        Items.Strings = (
+          'Automatic (Airborne / Pedestrian)'
+          'Portable'
+          'Stationary'
+          'Pedestrian'
+          'Automotive'
+          'Sea'
+          'Airborne <1g'
+          'Airborne <2g'
+          'Airborne <4g')
+      end
+      object Panel1: TPanel
+        Left = 128
+        Top = 196
+        Width = 241
+        Height = 89
+        BevelOuter = bvLowered
+        TabOrder = 6
+        object Label60: TLabel
+          AlignWithMargins = True
+          Left = 4
+          Top = 4
+          Width = 233
+          Height = 81
+          Align = alClient
+          Alignment = taCenter
+          Caption = 
+            'For automatic mode, "Pedestrian" mode is used when below "Flight' +
+            ' mode alt" and "Airborne <1g" is used above.'
+          WordWrap = True
+          ExplicitWidth = 232
+          ExplicitHeight = 76
+        end
       end
     end
     object LoRa: TTabSheet
       Caption = 'LoRa'
       ImageIndex = 2
       OnShow = LoRaShow
-      ExplicitWidth = 577
       DesignSize = (
         1073
         455)
@@ -658,7 +702,6 @@ object Form1: TForm1
     object RTTY: TTabSheet
       Caption = 'RTTY'
       ImageIndex = 3
-      ExplicitWidth = 577
       DesignSize = (
         1073
         455)
@@ -795,7 +838,6 @@ object Form1: TForm1
     object APRS: TTabSheet
       Caption = 'APRS'
       ImageIndex = 4
-      ExplicitWidth = 577
       DesignSize = (
         1073
         455)
@@ -1006,7 +1048,6 @@ object Form1: TForm1
     object TabSheet3: TTabSheet
       Caption = 'Uplink'
       ImageIndex = 5
-      ExplicitWidth = 577
       DesignSize = (
         1073
         455)
@@ -1048,7 +1089,6 @@ object Form1: TForm1
     object TabSheet4: TTabSheet
       Caption = 'Cutdown'
       ImageIndex = 6
-      ExplicitWidth = 577
       DesignSize = (
         1073
         455)
@@ -1110,7 +1150,6 @@ object Form1: TForm1
     object TabSheet6: TTabSheet
       Caption = 'Prediction'
       ImageIndex = 7
-      ExplicitWidth = 577
       DesignSize = (
         1073
         455)
@@ -1196,7 +1235,6 @@ object Form1: TForm1
     Anchors = [akLeft, akTop, akRight, akBottom]
     BevelOuter = bvLowered
     TabOrder = 9
-    ExplicitWidth = 574
   end
   object VaComm1: TVaComm
     Baudrate = br38400
@@ -1212,7 +1250,7 @@ object Form1: TForm1
     SettingsStore.RegRoot = rrCURRENTUSER
     SettingsStore.Location = slINIFile
     OnRxChar = VaComm1RxChar
-    Version = '2.1.0.1'
+    Version = '2.2.0.1'
     Left = 372
     Top = 12
   end
