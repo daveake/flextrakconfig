@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
-  Caption = 'Flextrak Configuration Tool V2.2'
+  Caption = 'Flextrak Configuration Tool V2.3'
   ClientHeight = 672
   ClientWidth = 1106
   Color = clBtnFace
@@ -11,12 +11,11 @@ object Form1: TForm1
   Font.Height = -16
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   OnCreate = FormCreate
+  PixelsPerInch = 96
   DesignSize = (
     1106
     672)
-  PixelsPerInch = 96
   TextHeight = 19
   object Label1: TLabel
     Left = 24
@@ -67,7 +66,6 @@ object Form1: TForm1
     Width = 181
     Height = 27
     Style = csDropDownList
-    ItemHeight = 19
     Sorted = True
     TabOrder = 0
     OnCloseUp = ComboBox1CloseUp
@@ -131,7 +129,7 @@ object Form1: TForm1
     Top = 136
     Width = 1081
     Height = 489
-    ActivePage = TabSheet3
+    ActivePage = TabSheet2
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 8
     object TabSheet1: TTabSheet
@@ -358,11 +356,10 @@ object Form1: TForm1
         OnChange = edtFieldsChange
       end
       object lstFields: TCheckListBox
-        Left = 395
+        Left = 455
         Top = 10
         Width = 290
         Height = 442
-        OnClickCheck = lstFieldsClickCheck
         ItemHeight = 19
         Items.Strings = (
           '0: PayloadID'
@@ -391,6 +388,7 @@ object Form1: TForm1
           'N: User Defined'
           'O: Maximum Altitude')
         TabOrder = 3
+        OnClickCheck = lstFieldsClickCheck
       end
       object edtFlightModeAltitude: TEdit
         Left = 129
@@ -402,10 +400,9 @@ object Form1: TForm1
       object cmbGPSMode: TComboBox
         Left = 129
         Top = 107
-        Width = 196
+        Width = 264
         Height = 27
         DropDownCount = 10
-        ItemHeight = 19
         TabOrder = 5
         Text = 'Choose Mode ...'
         OnCloseUp = cmbRxModeCloseUp
@@ -542,7 +539,6 @@ object Form1: TForm1
         Width = 297
         Height = 27
         DropDownCount = 10
-        ItemHeight = 19
         TabOrder = 1
         Text = 'Choose Mode ...'
         OnCloseUp = cmbRxModeCloseUp
@@ -603,7 +599,6 @@ object Form1: TForm1
           Top = 14
           Width = 85
           Height = 27
-          ItemHeight = 19
           TabOrder = 0
           Items.Strings = (
             '6'
@@ -619,7 +614,6 @@ object Form1: TForm1
           Top = 14
           Width = 85
           Height = 27
-          ItemHeight = 19
           TabOrder = 1
           Items.Strings = (
             '5'
@@ -648,7 +642,6 @@ object Form1: TForm1
           Top = 50
           Width = 85
           Height = 27
-          ItemHeight = 19
           TabOrder = 4
           Items.Strings = (
             '7K8'
@@ -1265,25 +1258,33 @@ object Form1: TForm1
     Top = 24
   end
   object IdHTTP1: TIdHTTP
-    AllowCookies = True
     ProxyParams.BasicAuthentication = False
     ProxyParams.ProxyPort = 0
     Request.ContentLength = -1
+    Request.ContentRangeEnd = -1
+    Request.ContentRangeStart = -1
+    Request.ContentRangeInstanceLength = -1
     Request.Accept = 'text/html, */*'
     Request.BasicAuthentication = False
     Request.UserAgent = 'Mozilla/3.0 (compatible; Indy Library)'
+    Request.Ranges.Units = 'bytes'
+    Request.Ranges = <>
     HTTPOptions = [hoForceEncodeParams]
     Left = 572
     Top = 220
   end
   object IdHTTP2: TIdHTTP
-    AllowCookies = True
     ProxyParams.BasicAuthentication = False
     ProxyParams.ProxyPort = 0
     Request.ContentLength = -1
+    Request.ContentRangeEnd = -1
+    Request.ContentRangeStart = -1
+    Request.ContentRangeInstanceLength = -1
     Request.Accept = 'text/html, */*'
     Request.BasicAuthentication = False
     Request.UserAgent = 'Mozilla/3.0 (compatible; Indy Library)'
+    Request.Ranges.Units = 'bytes'
+    Request.Ranges = <>
     HTTPOptions = [hoForceEncodeParams]
     Left = 564
     Top = 272

@@ -220,12 +220,10 @@ begin
 
     lstCommands.Items.Add('~GF' + IntToStr(StrToIntDef(edtFlightModeAltitude.Text, 2000)));
 
-    if cmbGPSMode.ItemIndex = 0 then begin
-        lstCommands.Items.Add('~GM-1');
-    end else if cmbGPSMode.ItemIndex = 1 then begin
-        lstCommands.Items.Add('~GM0');
-    end else if cmbGPSMode.ItemIndex > 1 then begin
-        lstCommands.Items.Add('~GM' + IntToStr(cmbGPSMode.ItemIndex));
+    if cmbGPSMode.Enabled then begin
+        if cmbGPSMode.ItemIndex >= 0 then begin
+            lstCommands.Items.Add('~GM' + IntToStr(cmbGPSMode.ItemIndex));
+        end;
     end;
 
     lstCommands.Items.Add('~CS');
@@ -402,6 +400,10 @@ begin
             lstCommands.Items.Add('~CD');
             lstCommands.Items.Add('~CE');
             lstCommands.Items.Add('~CV');
+            lstCommands.Items.Add('~CC');
+            lstCommands.Items.Add('~CD');
+            lstCommands.Items.Add('~CE');
+            lstCommands.Items.Add('~CV');
         except
             pnlCommStatus.Caption := VaComm1.DeviceName + ' failed to open';
         end;
@@ -507,6 +509,8 @@ begin
         pnlVersion.Caption := Line;
         if pnlProduct.Caption = '' then pnlProduct.Caption := 'FlexTrak';
         if pnlDescription.Caption = '' then pnlDescription.Caption := 'FlexTrak AVR';
+        cmbGPSMode.Enabled := Pos('B2Space', pnlDescription.Caption) > 0;
+        Label59.Enabled := cmbGPSMode.Enabled;
     end else if Command = 'PROD' then begin
         pnlProduct.Caption := Line;
         FlexTrack := Pos('FlexTrack', Line) > 0;
@@ -521,6 +525,8 @@ begin
         lblCallingCount2.Visible := FlexTrack;
     end else if Command = 'DESC' then begin
         pnlDescription.Caption := Line;
+        cmbGPSMode.Enabled := Pos('B2Space', Line) > 0;
+        Label59.Enabled := cmbGPSMode.Enabled;
     end else if Command = 'GPS' then begin
         GetString(Line);
         pnlTime.Caption := GetString(Line);
@@ -556,13 +562,7 @@ begin
         edtFlightModeAltitude.Text := Line;
     end else if Command = 'GM' then begin
         Value := StrToIntDef(Line, -1);
-        if Value = -1 then begin
-            cmbGPSMode.ItemIndex := 0;
-        end else if Value = 0 then begin
-            cmbGPSMode.ItemIndex := 1;
-        end else if Value > 1 then begin
-            cmbGPSMode.ItemIndex := Value
-        end;
+        cmbGPSMode.ItemIndex := Value
     end else if Command = 'GM' then begin
         edtFlightModeAltitude.Text := Line;
     end else if Command = 'CA' then begin
