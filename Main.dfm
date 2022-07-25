@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
-  Caption = 'Flextrak Configuration Tool V2.3'
+  Caption = 'Flextrak Configuration Tool V2.5'
   ClientHeight = 672
   ClientWidth = 1106
   Color = clBtnFace
@@ -12,7 +12,6 @@ object Form1: TForm1
   Font.Name = 'Tahoma'
   Font.Style = []
   OnCreate = FormCreate
-  PixelsPerInch = 96
   DesignSize = (
     1106
     672)

@@ -502,6 +502,7 @@ procedure TForm1.ProcessLine(Line: AnsiString);
 var
     Command: AnsiString;
     Value: Integer;
+    Temp: String;
 begin
     Command := UpperCase(GetString(Line, '='));
 
@@ -528,8 +529,14 @@ begin
         cmbGPSMode.Enabled := Pos('B2Space', Line) > 0;
         Label59.Enabled := cmbGPSMode.Enabled;
     end else if Command = 'GPS' then begin
-        GetString(Line);
-        pnlTime.Caption := GetString(Line);
+        Temp := GetString(Line);
+        if Pos('/', Temp) > 0 then begin
+            // Date
+            pnlTime.Caption := GetString(Line);
+        end else begin
+            pnlTime.Caption := Temp;
+        end;
+
         pnlLat.Caption := GetString(Line);
         pnlLon.Caption := GetString(Line);
         pnlAlt.Caption := GetString(Line);
