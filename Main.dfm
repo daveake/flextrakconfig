@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
-  Caption = 'Flextrak Configuration Tool V2.5'
+  Caption = 'Flextrak Configuration Tool V2.6'
   ClientHeight = 672
   ClientWidth = 1106
   Color = clBtnFace
@@ -355,11 +355,16 @@ object Form1: TForm1
         OnChange = edtFieldsChange
       end
       object lstFields: TCheckListBox
-        Left = 455
-        Top = 10
+        Left = 447
+        Top = 3
         Width = 290
         Height = 442
-        ItemHeight = 19
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -15
+        Font.Name = 'Courier New'
+        Font.Style = []
+        ItemHeight = 17
         Items.Strings = (
           '0: PayloadID'
           '1: Counter'
@@ -381,11 +386,12 @@ object Form1: TForm1
           'H: Rx Count'
           'I: User Defined'
           'J: User Defined'
-          'IK User Defined'
+          'K User Defined'
           'L: User Defined'
           'M: User Defined'
           'N: User Defined'
           'O: Maximum Altitude')
+        ParentFont = False
         TabOrder = 3
         OnClickCheck = lstFieldsClickCheck
       end
@@ -438,6 +444,14 @@ object Form1: TForm1
           ExplicitWidth = 232
           ExplicitHeight = 76
         end
+      end
+      object chkFieldList: TCheckBox
+        Left = 129
+        Top = 312
+        Width = 264
+        Height = 17
+        Caption = 'Include Field List in telemetry'
+        TabOrder = 7
       end
     end
     object LoRa: TTabSheet

@@ -36,10 +36,22 @@ Connect this to the FlextTrak board such that pin 1 connects to the pin nearest 
 Build
 -----
 
-The program was developed using Delphi 2009 with the TMS Async component for serial comms.  I've not tried but it should build fine with older or new Delphi versions, so long as that component is installed.
+The program was developed using Delphi with the TMS Async component for serial comms.
 
 History
 -------
+
+<u>22/9/2022	V2.6</u>
+
+- Added option for tracker to transmit field list
+
+<u>V2.5</u>
+
+- Minor mod for latest FlexTrak STM firmware V1.05
+
+<u>V2.3</u>
+
+- Send VER etc twice on connection; simplified GPS Dynamic mode
 
 <u>26/11/2021	V2.0</u>
 

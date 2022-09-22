@@ -154,6 +154,7 @@ type
     Label59: TLabel;
     Panel1: TPanel;
     Label60: TLabel;
+    chkFieldList: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure ComboBox1CloseUp(Sender: TObject);
     procedure VaComm1RxChar(Sender: TObject; Count: Integer);
@@ -219,6 +220,8 @@ begin
     lstCommands.Items.Add('~CF' + edtFields.Text);
 
     lstCommands.Items.Add('~GF' + IntToStr(StrToIntDef(edtFlightModeAltitude.Text, 2000)));
+
+    lstCommands.Items.Add('~CL' + ifthen(chkFieldList.Checked, '1', '0'));
 
     if cmbGPSMode.Enabled then begin
         if cmbGPSMode.ItemIndex >= 0 then begin
@@ -565,6 +568,8 @@ begin
         edtCallsign.Text := Line;
     end else if Command = 'CF' then begin
         edtFields.Text := Line;
+    end else if Command = 'CL' then begin
+        chkFieldList.Checked := StrToIntDef(Line,0) <> 0;
     end else if Command = 'GF' then begin
         edtFlightModeAltitude.Text := Line;
     end else if Command = 'GM' then begin
